@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IceSync.Common\IceSync.Common.csproj" />
+    <ProjectReference Include="..\IceSync.Data.Models\IceSync.Data.Models.csproj" />
+    <ProjectReference Include="..\IceSync.Data\IceSync.Data.csproj" />
+    <ProjectReference Include="..\IceSync.Infrastructure\IceSync.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

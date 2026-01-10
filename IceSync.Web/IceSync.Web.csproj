@@ -6,4 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IceSync.Common\IceSync.Common.csproj" />
+    <ProjectReference Include="..\IceSync.Data\IceSync.Data.csproj" />
+    <ProjectReference Include="..\IceSync.Services\IceSync.Services.csproj" />
+    <ProjectReference Include="..\IceSync.Web.ViewModels\IceSync.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
