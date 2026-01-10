@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+  <Project Path="IceSync.Web/IceSync.Web.csproj" />
+</Solution>
