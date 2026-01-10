@@ -1,5 +1,4 @@
-﻿
-namespace IceSync.Common.Options;
+﻿namespace IceSync.Common.Options;
 
 public sealed class UniversalLoaderOptions
 {

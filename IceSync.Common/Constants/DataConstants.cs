@@ -1,5 +1,4 @@
-﻿
-namespace IceSync.Common.Constants;
+﻿namespace IceSync.Common.Constants;
 
 public static class DataConstants
 {
