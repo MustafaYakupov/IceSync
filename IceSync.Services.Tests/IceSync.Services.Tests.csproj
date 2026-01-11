@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="NUnit" Version="4.4.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.7.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IceSync.Data.Models\IceSync.Data.Models.csproj" />
+    <ProjectReference Include="..\IceSync.Data\IceSync.Data.csproj" />
+    <ProjectReference Include="..\IceSync.Infrastructure\IceSync.Infrastructure.csproj" />
+    <ProjectReference Include="..\IceSync.Services\IceSync.Services.csproj" />
+    <ProjectReference Include="..\IceSync.Web.ViewModels\IceSync.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\IceSynd.Services.Contracts\IceSync.Services.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+</Project>

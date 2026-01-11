@@ -1,10 +1,17 @@
 <Solution>
+  <Folder Name="/Data/">
+    <Project Path="IceSync.Data.Models/IceSync.Data.Models.csproj" />
+    <Project Path="IceSync.Data/IceSync.Data.csproj" />
+  </Folder>
+  <Folder Name="/Services/">
+    <Project Path="IceSync.Infrastructure/IceSync.Infrastructure.csproj" />
+    <Project Path="IceSync.Services.Tests/IceSync.Services.Tests.csproj" />
+    <Project Path="IceSync.Services/IceSync.Services.csproj" />
+    <Project Path="IceSynd.Services.Contracts/IceSync.Services.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/Web/">
+    <Project Path="IceSync.Web.ViewModels/IceSync.Web.ViewModels.csproj" />
+    <Project Path="IceSync.Web/IceSync.Web.csproj" />
+  </Folder>
   <Project Path="IceSync.Common/IceSync.Common.csproj" />
-  <Project Path="IceSync.Data.Models/IceSync.Data.Models.csproj" />
-  <Project Path="IceSync.Data/IceSync.Data.csproj" />
-  <Project Path="IceSync.Infrastructure/IceSync.Infrastructure.csproj" />
-  <Project Path="IceSync.Services/IceSync.Services.csproj" />
-  <Project Path="IceSync.Web.ViewModels/IceSync.Web.ViewModels.csproj" />
-  <Project Path="IceSync.Web/IceSync.Web.csproj" />
-  <Project Path="IceSynd.Services.Contracts/IceSync.Services.Contracts.csproj" />
 </Solution>
