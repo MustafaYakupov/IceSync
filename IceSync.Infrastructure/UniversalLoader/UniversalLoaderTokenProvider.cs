@@ -2,8 +2,11 @@
 using IceSync.Infrastructure.UniversalLoader.Contracts;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
-using System.Net.Http.Json;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
+using static System.Net.WebRequestMethods;
 
 namespace IceSync.Infrastructure.UniversalLoader;
 
@@ -29,14 +32,13 @@ public class UniversalLoaderTokenProvider : IUniversalLoaderTokenProvider
 
     public async Task<string> GetTokenAsync(CancellationToken ct)
     {
-        if (this.cache.TryGetValue(CacheKey, out string? token) &&
-            !string.IsNullOrWhiteSpace(token) &&
-            !IsExpired(token))
+        if (this.cache.TryGetValue(CacheKey, out string? cached) &&
+            !string.IsNullOrWhiteSpace(cached) &&
+            !IsExpired(cached))
         {
-            return token!;
+            return cached!;
         }
 
-        // TODO: adjust endpoint/path to match real API
         var payload = new
         {
             apiCompanyId = this.options.CompanyId,
@@ -44,20 +46,47 @@ public class UniversalLoaderTokenProvider : IUniversalLoaderTokenProvider
             apiUserSecret = this.options.UserSecret
         };
 
-        using var resp = await http.PostAsJsonAsync("/auth/token", payload, ct);
+        var json = JsonSerializer.Serialize(payload);
+        using var content = new StringContent(json, Encoding.UTF8, "application/json-patch+json");
+
+        using var resp = await this.http.PostAsync("/authenticate", content, ct);
         resp.EnsureSuccessStatusCode();
 
-        var json = await resp.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken: ct)
-                   ?? throw new InvalidOperationException("Empty token response.");
-
-        token = json.Token;
+        var raw = (await resp.Content.ReadAsStringAsync(ct)).Trim();
+        var token = ExtractToken(raw);
 
         var exp = GetExpiry(token);
         var cacheFor = exp - DateTimeOffset.UtcNow - TimeSpan.FromMinutes(1);
         if (cacheFor < TimeSpan.FromSeconds(10)) cacheFor = TimeSpan.FromMinutes(1);
 
         this.cache.Set(CacheKey, token, cacheFor);
-        return token!;
+
+        return token;
+    }
+
+    private static string ExtractToken(string raw)
+    {
+        raw = raw.Trim();
+
+        // token might be plain string OR JSON object
+        try
+        {
+            using var doc = JsonDocument.Parse(raw);
+            if (doc.RootElement.ValueKind == JsonValueKind.Object)
+            {
+                if (doc.RootElement.TryGetProperty("token", out var tokenProp))
+                    return tokenProp.GetString()!.Trim();
+
+                if (doc.RootElement.TryGetProperty("access_token", out var atProp))
+                    return atProp.GetString()!.Trim();
+            }
+        }
+        catch
+        {
+            // ignore
+        }
+
+        return raw.Trim('"');
     }
 
     private static DateTimeOffset GetExpiry(string jwt)
@@ -71,8 +100,5 @@ public class UniversalLoaderTokenProvider : IUniversalLoaderTokenProvider
             : DateTimeOffset.UtcNow.AddMinutes(5);
     }
 
-    private sealed class TokenResponse
-    {
-        public string Token { get; set; } = "";
-    }
+
 }

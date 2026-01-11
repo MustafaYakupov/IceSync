@@ -21,13 +21,14 @@ public class WorkflowService : IWorkflowService
 
     public async Task<IReadOnlyList<WorkflowDto>> GetWorkflowsFromApiAsync(CancellationToken ct)
         => await this.api.GetWorkflowsAsync(ct);
-    public async Task<bool> RunWorkflowAsync(string workflowId, CancellationToken ct)
+    public async Task<bool> RunWorkflowAsync(int workflowId, CancellationToken ct)
         => await this.api.RunWorkflowAsync(workflowId, ct); 
 
     public async Task<int> SyncWorkflowsToDatabaseAsync(CancellationToken ct)
     {
         var apiWorkflows = await this.api.GetWorkflowsAsync(ct);
-        var apiIds = apiWorkflows.Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var apiIds = apiWorkflows.Select(x => x.Id.ToString())
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         var dbWorkflows = await this.repo.GetAllAsync(ct);
 
@@ -40,17 +41,19 @@ public class WorkflowService : IWorkflowService
 
         foreach (var dto in apiWorkflows)
         {
+            var apiId = dto.Id.ToString();
+
             var existing = dbWorkflows.FirstOrDefault(x =>
-                x.ApiWorkflowId.Equals(dto.Id, StringComparison.OrdinalIgnoreCase));
+                x.ApiWorkflowId == apiId);
 
             if (existing is null)
             {
                 await this.repo.AddAsync(new Workflow
                 {
-                    ApiWorkflowId = dto.Id,
+                    ApiWorkflowId = apiId,
                     WorkflowName = dto.Name,
                     IsActive = dto.IsActive,
-                    MultiExecBehavior = dto.MultiExecBehavior,
+                    MultiExecBehavior = dto.MultiExecBehavior.ToString(),
                     IsDeleted = false
                 }, ct);
             }
@@ -58,7 +61,7 @@ public class WorkflowService : IWorkflowService
             {
                 existing.WorkflowName = dto.Name;
                 existing.IsActive = dto.IsActive;
-                existing.MultiExecBehavior = dto.MultiExecBehavior;
+                existing.MultiExecBehavior = dto.MultiExecBehavior.ToString();
                 existing.IsDeleted = false;
                 this.repo.Update(existing);
             }

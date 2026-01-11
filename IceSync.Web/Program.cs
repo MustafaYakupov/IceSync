@@ -51,6 +51,7 @@ public class Program
 
         // Infrastructure services
         builder.Services.AddSingleton<IUniversalLoaderTokenProvider, UniversalLoaderTokenProvider>();
+        builder.Services.AddMemoryCache();
 
         // Repositories + UoW
         builder.Services.AddScoped<IWorkflowRepository, WorkflowRepository>();
