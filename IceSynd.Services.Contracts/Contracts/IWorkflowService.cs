@@ -1,4 +1,4 @@
-﻿using IceSync.Web.ViewModels.Models;
+﻿using IceSync.Web.ViewModels.Workflow;
 
 namespace IceSync.Services.Contracts;
 

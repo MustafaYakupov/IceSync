@@ -1,7 +1,7 @@
 ﻿using IceSync.Data.Models;
 using IceSync.Data.Repositories.Contracts;
 using IceSync.Infrastructure.UniversalLoader.Contracts;
-using IceSync.Web.ViewModels.Models;
+using IceSync.Web.ViewModels.Workflow;
 using IceSync.Services.Contracts;
 
 namespace IceSync.Services;

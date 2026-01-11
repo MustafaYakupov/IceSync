@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using IceSync.Web.Models;
+using IceSync.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IceSync.Web.Controllers

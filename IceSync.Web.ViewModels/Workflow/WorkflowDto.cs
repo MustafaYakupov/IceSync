@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace IceSync.Web.ViewModels.Models;
+namespace IceSync.Web.ViewModels.Workflow;
 
 public class WorkflowDto
 {
