@@ -1,7 +1,7 @@
 ﻿using IceSync.Data.Models;
 using IceSync.Data.Repositories.Contracts;
 using IceSync.Infrastructure.UniversalLoader.Contracts;
-using IceSync.Infrastructure.UniversalLoader.Models;
+using IceSync.Web.ViewModels.Models;
 using IceSync.Services.Contracts;
 
 namespace IceSync.Services;
@@ -38,7 +38,6 @@ public class WorkflowService : IWorkflowService
             this.repo.Update(db);
         }
 
-        // Upsert
         foreach (var dto in apiWorkflows)
         {
             var existing = dbWorkflows.FirstOrDefault(x =>

@@ -1,5 +1,5 @@
 ﻿using IceSync.Infrastructure.UniversalLoader.Contracts;
-using IceSync.Infrastructure.UniversalLoader.Models;
+using IceSync.Web.ViewModels.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;

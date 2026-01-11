@@ -11,6 +11,8 @@
     <ProjectReference Include="..\IceSync.Data.Models\IceSync.Data.Models.csproj" />
     <ProjectReference Include="..\IceSync.Data\IceSync.Data.csproj" />
     <ProjectReference Include="..\IceSync.Infrastructure\IceSync.Infrastructure.csproj" />
+    <ProjectReference Include="..\IceSync.Web.ViewModels\IceSync.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\IceSynd.Services.Contracts\IceSynd.Services.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

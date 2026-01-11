@@ -1,4 +1,4 @@
-﻿using IceSync.Infrastructure.UniversalLoader.Models;
+﻿using IceSync.Web.ViewModels.Models;
 
 namespace IceSync.Services.Contracts;
 
