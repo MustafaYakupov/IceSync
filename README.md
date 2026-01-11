@@ -22,6 +22,7 @@ The application periodically synchronizes workflow data into a SQL Server databa
 
 The solution follows a **layered architecture** with clear separation of concerns.
 
+```text
 /Web
 ├─ IceSync.Web
 └─ IceSync.Web.ViewModels
@@ -34,6 +35,7 @@ The solution follows a **layered architecture** with clear separation of concern
 /Data
 ├─ IceSync.Data
 └─ IceSync.Data.Models
+```
 
 ### Layer Responsibilities
 
