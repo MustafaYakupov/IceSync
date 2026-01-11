@@ -5,7 +5,7 @@ namespace IceSync.Web.ViewModels.Workflow;
 public class WorkflowDto
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; } = "";
+    public int Id { get; set; }
 
     [JsonPropertyName("name")]
     public string Name { get; set; } = "";
