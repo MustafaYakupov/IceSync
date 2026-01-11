@@ -30,7 +30,8 @@ The solution follows a **layered architecture** with clear separation of concern
 /Services
 ├─ IceSync.Services
 ├─ IceSync.Services.Contracts
-└─ IceSync.Infrastructure
+├─ IceSync.Infrastructure
+└─ IceSync.Services.Tests
 
 /Data
 ├─ IceSync.Data
