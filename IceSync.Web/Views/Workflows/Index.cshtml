@@ -1,0 +1,48 @@
+﻿@model List<IceSync.Web.ViewModels.Workflow.WorkflowRowViewModel>
+
+@{
+    ViewData["Title"] = "Workflows";
+    bool? ok = TempData["StatusOk"] as bool?;
+    string? msg = TempData["StatusMessage"] as string;
+}
+
+<h1 class="mb-3">Workflows</h1>
+
+@if (!string.IsNullOrWhiteSpace(msg))
+{
+    <div class="alert @(ok == true ? "alert-success" : "alert-danger")" role="alert">
+        @msg
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Workflow Id</th>
+                <th>Workflow Name</th>
+                <th>Is Active</th>
+                <th>Multi Exec Behavior</th>
+                <th style="width: 120px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>@w.WorkflowId</td>
+                    <td>@w.WorkflowName</td>
+                    <td>@(w.IsActive ? "Yes" : "No")</td>
+                    <td>@w.MultiExecBehavior</td>
+                    <td>
+                        <form asp-action="Run" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="workflowId" value="@w.WorkflowId" />
+                            <button type="submit" class="btn btn-sm btn-primary">Run</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
