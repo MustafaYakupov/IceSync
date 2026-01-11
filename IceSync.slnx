@@ -6,5 +6,5 @@
   <Project Path="IceSync.Services/IceSync.Services.csproj" />
   <Project Path="IceSync.Web.ViewModels/IceSync.Web.ViewModels.csproj" />
   <Project Path="IceSync.Web/IceSync.Web.csproj" />
-  <Project Path="IceSynd.Services.Contracts/IceSynd.Services.Contracts.csproj" />
+  <Project Path="IceSynd.Services.Contracts/IceSync.Services.Contracts.csproj" />
 </Solution>

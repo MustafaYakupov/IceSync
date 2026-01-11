@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IceSync.Common\IceSync.Common.csproj" />
-    <ProjectReference Include="..\IceSynd.Services.Contracts\IceSynd.Services.Contracts.csproj" />
+    <ProjectReference Include="..\IceSynd.Services.Contracts\IceSync.Services.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
